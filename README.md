@@ -23,7 +23,7 @@ You're going to need:
  2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/cozy-dev-docs.git`
  3. `cd cozy-dev-docs`
  4. Install all dependencies: `bundle install`
- 5. Start the test server: `bundle exec middleman server`
+ 5. Start the test server: `EXECJS_RUNTIME=Node bundle exec middleman`
 
 Or use the included Dockerfile! (must install Docker first)
 
