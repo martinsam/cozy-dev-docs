@@ -3,7 +3,6 @@ title: Cozy Developer Documentation
 
 language_tabs:
   - javascript: JavaScript
-  - coffeescript: CoffeeScript
 
 toc_footers:
   - <a href="https://cozy.io">Cozy Website</a>
@@ -32,13 +31,9 @@ The **technical level required** to read and understand this documentation is no
  * Be comfortable with **command-line** calls
  * Know that cookie are not made of flour
 
- > Code examples are available in **both JavaScript and CoffeeScript** for <s>every troll's taste</s> everyone's preference.
 
 ```javascript
 console.log(" ╰(◕‿◕)╯ ");
-```
-```coffeescript
-console.log " ╰(◕‿◕)╯ "
 ```
 
 <p style="text-align: center"><img src="images/cookie-monsta.png" style="max-width: 300px"></p>
@@ -357,7 +352,7 @@ The Data System is the data layer of Cozy Cloud. Technically, it is a wrapper fo
 * the database is one huge list of typeless JSON documents
 
 The Data System introduces the concept of document type. Each document has a **document type**. Each application can **declare or reuse** document types. It can be Contact, an Event, a File, a Message, a Todo, etc.
-It's a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we've documented the main ones [here]().
+It's a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we've documented the main ones [here](#main-document-types).
 The document type is automatically stored in the CouchDB document by the Data System. From our developper point of view, it's as if we were using SQL tables.
 
 The Data System offers a REST API, which means one must use HTTP requests to communicate with it. In order to facilitate this communication, we've built a module to provide developers a programatic API: please, meet `cozydb`.
@@ -365,7 +360,7 @@ The Data System offers a REST API, which means one must use HTTP requests to com
 <aside class="notice">
 The Data system can do much more, we'll introduce you its features step by step.
 <br />
-If you are willing to check the full Data System's documentation, please [click here]().
+If you are willing to check the full Data System's documentation, please [click here](#data-system-api).
 </aside>
 
 ### Using cozydb to build a CRUD
@@ -525,7 +520,7 @@ router.get('/debts/:id', function(req, res, next) {
 Another method of the model object is `Debt.find`, which allows us to fetch one document from the database, given its ID.
 
 The document's ID is given in the URL, which Express conveniently build into the
-`req.params` object. In this case, if the defined URL pattern were `/debts/:toto`, the data would be found in `req.params.toto`.
+`req.params` object. In this case, if the defined URL pattern were `/debts/:foo`, the data would be found in `req.params.foo`.
 
 Try again to fetch the document. It should work! What if we try with an unexisting ID now? We probably expect a specific error code to make the difference between an unexpected error ("Something went wrong!") and an expected error ("This document does not exist"), in order to provide a better feedback to the user.
 
@@ -839,73 +834,167 @@ We can do more with CouchDB views, but that's a good start. We are able to many 
 
 
 ## Packaging and deployment
-* how to package the application: manifest, common pitfalls
-* deploy the app into a Cozy instance: push to remote, install from Git.
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>how to package the application: manifest, common pitfalls</li>
+<li>deploying the app into a Cozy instance: push to remote, install from Git.</li>
+</ul>
+</aside>
 
 ## Interacting with the Data System: advanced
-* explain view mechanism of CouchDB
-* advanced use of cozydb helpers
-* link to the CouchDB book.
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>detailed explaination of CouchDB view mechanism</li>
+<li>map/reduce functions declarations</li>
+<li>Useful CouchDB resources</li>
+</ul>
+</aside>
 
 ## Serving assets
-* serving an HTML page with data
-* serving static assets
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>serving an HTML page with data</li>
+<li>serving static assets</li>
+</ul>
+</aside>
 
 # Going further
 
 ## Reusing an existing document type
-* reuse an existing data type, like contacts
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>reusing an existing data type, like contacts</li>
+</ul>
+</aside>
 
 ## Make an app's route public
-* create a public route
-* serve assets from a public route
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>creating a public route</li>
+<li>serving assets from a public route</li>
+</ul>
+</aside>
 
 ## Realtime events
-* how does it work
-* intiailize realtime
-* handling events on the server
-* forwarding events to the client
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>how does it work</li>
+<li>initializing realtime</li>
+<li>handling events on the server</li>
+<li>forwarding events to the client</li>
+</ul>
+</aside>
 
 ## Data encryption
-* describe how to automatically encrypt data
-* describe how to encrypt any data
-* inform about current encryption limits
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>describing how to automatically encrypt data</li>
+<li>describing how to encrypt any data</li>
+<li>informing about current encryption limits</li>
+</ul>
+</aside>
 
 ## Working with binaries
-* not in this iteration
+
+<aside class="notice">
+This will come later.
+</aside>
 
 ## Share documents
-* tutorial for cozy-clearance (not in this iteration)
+
+<aside class="notice">
+This will come later.
+</aside>
 
 ## Internationalization
-* use of cozy-localization-manager
+<aside class="notice">
+Coming soon...
+<ul>
+<li>using of cozy-localization-manager</li>
+</ul>
+</aside>
 
 ## Sending emails from the platform
-* sending an email from the user
-* sending an email to the user
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>sending an email from the user</li>
+<li>sending an email to the user</li>
+</ul>
+</aside>
+
+## Building a standalone Single Page Application
+We like to experiment in the Node.js ecosystem, and we're promoting single page applications as the way to buld rich experience for the web. This tutorial doesn't cover that aspect. If you want to learn more, please check our [tutorial](https://blog.cozycloud.cc/post/2015/09/29/Build-and-share-your-single-page-app-with-React%2C-Node-and-Pouchdb%2C-part-I)!
+
 
 # Understanding the platform
 
 ## Architecture and Components
-It's already pretty well documented, with diagrams and stuff.
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
 
 ## Authentication and permissions
-It's already pretty well documented, with diagrams and stuff.
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
 
 ## Encryption management
-It's already pretty well documented, with diagrams and stuff.
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
 
 
 # References
 ## Data System API
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/data-system.html).
+
 ## Cozy DB API
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](http://cozy.github.io/cozy-db/doc/DOCINDEX.md.html).
+
 ## Controller API
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/controller.html).
+
 ## Cozy Development Environment
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/understanding-dev-environment.html).
+
 ## Main document types
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>Event</li>
+<li>Contact</li>
+<li>File</li>
+<li>Folder</li>
+<li>Message</li>
+</ul>
+</aside>
 
 # Getting help
 ## IRC
+You can find help from the team or from a loving member of our community on `irc.freenode.net`, channel #cozycloud.
+You can use the [webchat](https://webchat.freenode.net/) if you like!
+
 ## Forum
+Our community is quite active on our [forum](https://forum.cozy.io/), mostly users willing to report bugs or ask for features. As a developer, no doubt you will get constructive feedbacks if you ask there!
+
 ## Email
+You can always contact the team by sending an email at contact[at]cozycloud.cc.
+
 ## GitHub
+You will find all the repositories under the [cozy organization](https://github.com/cozy/) and the [cozy-labs organization](https://github.com/cozy-labs/).
+
 ## Mentorship
+We have a special menthorship program for developers looking for help!
+One Cozy's team member will spend 2 hours a week with you to help you developing your application!
+You can find all the details [here](https://forum.cozy.io/t/mentorship-program/529).
