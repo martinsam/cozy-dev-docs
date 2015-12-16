@@ -302,14 +302,18 @@ You may wonder how to glue everything together. All that magic is done in `serve
 
 ```javascript
 // ./server.js
+
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 
 /*
     Configuration section.
 */
-// Nothing for now
-
+app.use(bodyParser.json());
+app.use(morgan('dev'));
+app.use(express.static('client'));
 
 /*
     Define routes and their handler.
