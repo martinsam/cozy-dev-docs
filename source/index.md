@@ -2,7 +2,7 @@
 title: Cozy Developer Documentation
 
 language_tabs:
-  - javascript: JavaScript (ES6)
+  - javascript: JavaScript
   - coffeescript: CoffeeScript
 
 toc_footers:
@@ -423,7 +423,6 @@ var Debt = cozydb.getModel('Debt', {
 });
 
 module.exports = Debt;
-
 ```
 
 `cozydb.getModel` returns an object we call a model that can perform operations on the Data System with the knowledge of the document type. A model has several methods that will help us achieve our goals. Let's discover them by writing the controller's code.
@@ -471,31 +470,26 @@ router.post('/debts', function(req, res, next) {
 });
 ```
 <br style="clear:both;" />
-The function `Debt.create` creates a new debt object with the data from the request's body. That means the client must send a body with all the mandatory fields you defined in the document type schema. `req.body` contains exactly the payload you declared in the client.
+The function `Debt.create` creates a new debt object with the data from the request's body. That means the client must send a body with all the mandatory fields you defined in the document type schema. `req.body` contains exactly the payload we sent from the client.
 
-It is important to note that `req.body` only exist because we use the `body-parser` middleware, declared in `./server.js`. This middleware looks into every requests the server receives, and if it find a JSON payload, unserialize it to a JavaScript object.
+It is important to note that `req.body` only exists because we use the `body-parser` middleware, declared in `./server.js`. This middleware looks into every requests the server receives, and if it find a JSON payload, unserialize it to a JavaScript object.
 
 <aside class="notice">
-As an eye-sharped reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
+As an sharp-eyed reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
 </aside>
 
 We use Express' default error middleware to process eventual errors that could occur. To achieve that, we call the `next` function with the error as parameter. If an error occurs, Express will send the error in the response's body, with an status code of 500. If you want to learn more about Express middlewares, you can check the official [documentation page](http://expressjs.com/en/guide/using-middleware.html).
 
-When we try again to create a new debt from the browser, we can notice the result is not just the payload we send, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion. For the purpose of this tutorial, let's keep the ID of the document we've created.
+When we try again to create a new debt from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion. For the purpose of this tutorial, let's keep the ID of the document we've created.
 
 <aside class="notice">
-We also notice there is a identical "id" field. We should not pay attention to it, as it is deprecated, and will be removed in the near future.
+We also notice there is a identical "id" field. We shouldn't pay attention to it, as it is deprecated, and will be removed in the near future.
 </aside>
 
 #### Fetch an existing debt
 Now we've learned how creating a new debt, we may want to fetch it. Fetching is done thanks the ID of the document, which is its unique identifier in the database.
 
 We can go back to our application, and try to fetch the document we've created with the ID we wrote in the previous part. Once again, it won't work because there is no code in the controller.
-
-Another method of the model object is `Debt.find`, which allows us to fetch one document from the database, given its ID.
-
-The document's ID is given in the URL, which Express conveniently build into the
-`req.params` object. In this case, if the defined URL pattern were `/debts/:toto`, the data would be found in `req.params.toto`.
 
 ```javascript
 // ./server/controllers/debt.js
@@ -525,10 +519,14 @@ router.get('/debts/:id', function(req, res, next) {
         }
     });
 });
-
 ````
 
 <br style="clear: both;" />
+Another method of the model object is `Debt.find`, which allows us to fetch one document from the database, given its ID.
+
+The document's ID is given in the URL, which Express conveniently build into the
+`req.params` object. In this case, if the defined URL pattern were `/debts/:toto`, the data would be found in `req.params.toto`.
+
 Try again to fetch the document. It should work! What if we try with an unexisting ID now? We probably expect a specific error code to make the difference between an unexpected error ("Something went wrong!") and an expected error ("This document does not exist"), in order to provide a better feedback to the user.
 
 Once again, we'll notice that the code doesn't behave as expected, let's fix it.
@@ -551,7 +549,7 @@ if(err) {
 ```
 
 <aside class="notice">
-It is very important to understand the difference between an unexpected error (it **should** have worked) and an expected error (if the sent data are incorrect, there is an error).
+It is very important to understand the difference between an unexpected error (it should have worked, but it hasn't) and an expected error (if the sent data are incorrect, there is an error).
 </aside>
 
 #### Update an existing debt
@@ -559,19 +557,289 @@ Now, we are going to update the document we've just fetched. You should expect t
 
 ```javascript
 // ./server/controllers/debt.js
+// Update an existing debt
+router.put('/debts/:id', function(req, res, next) {
+    /*
+        `Debt.updateAttributes` sends a request to the Data System to update
+        the document, given its ID and the fields to update.
+    */
+    Debt.updateAttributes(req.params.id, req.body, function(err, debt) {
+        if(err) {
+            /*
+                If an unexpected error occurs, forward it to Express error
+                middleware which will send the error properly formatted.
+            */
+            next(err);
+        } else if (!debt) {
+            /*
+                If there was no unexpected error, but that the document has not
+                been found, send the legitimate status code. `debt` is null.
+            */
+            res.sendStatus(404);
+        } else {
+            /*
+                If everything went well, send the fetched debt with the correct
+                HTTP status.
+            */
+            res.status(200).send(debt);
+        }
+    });
+});
 ```
 
+<br style="clear: both;" />
+Here we use the `Debt.updateAttributes` method in combination with `req.params.id` and `req.body`, that we introduced in the previous sections. We still pay attention to the possibility of updating an unexisting document, but the code should look very familiar now.
 
 #### Delete an existing debt
-Coming soon…
+There is one main element left in our CRUD, the deletion. The code is straightforward:
+
+```javascript
+// ./server/controllers/debt.js
+
+// Remove an existing debt
+router.delete('/debts/:id', function(req, res, next) {
+    /*
+        `Debt.destroy` sends a request to the Data System to update
+        the document, given its ID.
+    */
+    Debt.destroy(req.params.id, function(err) {
+        if(err) {
+            /*
+                If an unexpected error occurs, forward it to Express error
+                middleware which will send the error properly formatted.
+            */
+            next(err);
+        } else {
+            /*
+                If everything went well, send an empty response with the correct
+                HTTP status.
+            */
+            res.sendStatus(204);
+        }
+    });
+});
+```
+
+<br style="clear: both;" />
+The next handy method is `Debt.destroy`, which requires an ID as parameter, that we get from `req.params.id`. Straightforward, isn't it?
+
 
 #### List all existing debt
-Coming soon…
+We haven't tackled yet how to fetch a bunch of documents from the Data System yet, but now is the time. As mentioned in the Data System introduction, it uses CouchDB as a database engine. CouchDB is a NoSQL database, and can't be requested with SQL. It has a specific way to allow applications to fetch collection of documents.
+
+The principle is simple: CouchDB is a huge list of documents. To fetch a subset of this huge list, we must declare views. A view is a sort of powerful filter, defined using map/reduce functions. The map/reduce functions returns a list of key-value, whose key and value are defined by the view's creator (us).
+
+We describe in details how map/reduce work and how we can use them, later in this tutorial. For now, we'll introduce `cozydb` helpers to help us creating basic views, which are probably what we will need in most cases. Later on this tutorial, we'll get into details about map/reduce functions to build advanced
+
+<aside class="notice">
+In Cozy's Data System will automatically wall views for a specific doctype, so we don't have to worry about getting documents from document types we don't want. It's also a security measure to prevent applications to access documents they're not granted access to.
+</aside>
+
+The easiest way to introduce the view concept is getting practical. We are going to do the following:
+
+* List all the debts
+* List all debts for a given creditor
+* List all debts for a given creditor, between two dates
+
+Firstly, let's see how to define views. `cozydb` allows us to easily do it. All the views should be declared in `./server/models/requests.js` (we'll see how in a moment). Then all we have to do is to ask `cozydb` to load the file and do its magic.
+
+It must be done before the HTTP server starts to prevent coherence issue:
+
+```javascript
+// ./server.js
+
+var cozydb = require('cozydb');
+
+// ...
+
+/*
+    CouchDB views initialization. It must be done before starting the server.
+*/
+cozydb.configure(__dirname, null, function() {
+    /*
+        Start the HTTP server.
+    */
+    var server = app.listen(9250, function () {
+      var host = server.address().address;
+      var port = server.address().port;
+
+      console.log('Cozy tutorial app listening at http://%s:%s', host, port);
+    });
+});
+```
+
+##### List all the debts
+`cozydb` comes with a variety of convenient map/reduce functions.
+ To list all documents of a specific doctypes, you can use the following helper: `cozydb.defaultRequests.all`.
+
+ We can add it to `./server/models/requests.js`:
+
+ ```javascript
+ ./server/models/requests.js
+
+var cozydb = require('cozydb');
+
+module.exports = {
+    debt: {
+        all: cozydb.defaultRequests.all
+    }
+};
+ ```
+The code is straightforward: we list the models we want to declare views for, then we list all the map/reduce functions to define those views. In this case, the map/reduce functions will create a view with the document's ID as key and the document itself as value.
+
+<br style="clear: both;" />
+Dead easy, right? We can now write the controller's code to use it:
+
+```javascript
+// ./server/controllers/debt.js
+
+// List of all debts
+router.get('/debts', function(req, res, next) {
+    /*
+        `Debt.request` asks the data system to request a CouchDB view, given its
+        name.
+    */
+    Debt.request('all', function(err, debts) {
+        if(err) {
+            /*
+                If an unexpected error occurs, forward it to Express error
+                middleware which will send the error properly formatted.
+            */
+            next(err);
+        } else {
+            /*
+                If everything went well, send the list of documents with the
+                correct HTTP status code and content type.
+            */
+            res.status(200).json(debts);
+        }
+    });
+});
+```
+
+<br style="clear: both;" />
+The `Debt.request` function requests a specific CouchDB view. It needs the view's name, in this case `all`, that we've previously declared in `./server/models/requests.js`.
+
+Now we can check that we get all the document we've created, by going to http://localhost:9250/ and trying out the form in the list section.
+
+##### List all the debts for a given creditor
+Listing all documents of document type is too basic for many use cases. We may want to get the list of all the debts for a given creditor.
+
+This can be done in two steps. First, we need to declare a new view that will index document of document type "debt" by creditor. `cozydb` comes once again to the rescue:
+
+```javascript
+ ./server/models/requests.js
+
+var cozydb = require('cozydb');
+
+module.exports = {
+    debt: {
+        all: cozydb.defaultRequests.all,
+        byCreditor: cozydb.defaultRequests.by('creditor')
+    }
+};
+```
+
+<br style="clear: both;" />
+`cozydb.defaultRequests.by` takes one model's attribute as parameter. In this case, the map/reduce functions will create a view with the document's creditor as key and the document itself as value.
+
+What's the point of using the creditor as the key, we may ask? Well, we can now request the view to retrieve only the document for a specific creditor. See the following code:
+
+```javascript
+// ./server/controllers/debt.js
+
+/// List of all debts, for a given creditor
+router.get('/debts', function(req, res, next) {
+    /*
+        `Debt.request` also has an `options` parameter where you can specify
+        things, like a specific key.
+    */
+    var options =  {
+        key: 'Joseph'
+    };
+    Debt.request('byCreditor', options, function(err, debts) {
+        if(err) {
+            /*
+                If an unexpected error occurs, forward it to Express error
+                middleware which will send the error properly formatted.
+            */
+            next(err);
+        } else {
+            /*
+                If everything went well, send an empty response with the correct
+                HTTP status.
+            */
+            res.status(200).json(debts);
+        }
+    });
+});
+```
+<br style="clear: both;" />
+Here we request all the debts, indexed by creditor, and specify that we only want the documents whose creditor's field is equal to "Joseph".
+
+
+##### List all debts for a given creditor, between two dates
+We can do better! What if we want to get only the document between two dates?
+
+We are going to need another view:
+
+```javascript
+ ./server/models/requests.js
+
+var cozydb = require('cozydb');
+
+module.exports = {
+    debt: {
+        all: cozydb.defaultRequests.all,
+        byCreditor: cozydb.defaultRequests.by('creditor'),
+        byCreditorDate: cozydb.defaultRequests.by(['creditor', 'dueDate'])
+    }
+};
+```
+
+<br style="clear: both;" />
+`cozydb.defaultRequests.by` can also take an array of model's attributes as parameter. The view's key can be a simple data (a string, a date) as well as an array (of a mix of strings, dates, objects, etc.).
+
+We can now add more parameters to our requests:
+
+```javascript
+// ./server/controllers/debt.js
+
+/// List of all debts, for a given creditor
+router.get('/debts', function(req, res, next) {
+    /*
+        `Debt.request` also has an `options` parameter where you can specify
+        things, like a range of keys.
+    */
+    var options =  {
+        startKey: ['Joseph', '2015-12-01'],
+        endKey: ['Joseph', '2015-12-31'],
+    };
+    Debt.request('byCreditor', options, function(err, debts) {
+        if(err) {
+            /*
+                If an unexpected error occurs, forward it to Express error
+                middleware which will send the error properly formatted.
+            */
+            next(err);
+        } else {
+            /*
+                If everything went well, send an empty response with the correct
+                HTTP status.
+            */
+            res.status(200).json(debts);
+        }
+    });
+});
+```
+<br style="clear: both;" />
+Here we request all the debts, indexed by creditor and dates, and specify that we only want the documents whose creditor's field is equal to "Joseph", in December 2015.
+
+We can do more with CouchDB views, but that's a good start. We are able to many type of requests already. We'll see in details how to write map and reduce functions by ourselves latter in this tutorial.
+
 
 ## Packaging and deployment
-* how to package the application:
-    * manifest
-    * our build stuff (not sure about it yet)
+* how to package the application: manifest, common pitfalls
 * deploy the app into a Cozy instance: push to remote, install from Git.
 
 ## Interacting with the Data System: advanced
