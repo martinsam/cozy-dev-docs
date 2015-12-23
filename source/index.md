@@ -946,6 +946,40 @@ Coming soon...
 We like to experiment in the Node.js ecosystem, and we're promoting single page applications as the way to buld rich experience for the web. This tutorial doesn't cover that aspect. If you want to learn more, please check our [tutorial](https://blog.cozycloud.cc/post/2015/09/29/Build-and-share-your-single-page-app-with-React%2C-Node-and-Pouchdb%2C-part-I)!
 
 
+## Install a static application into your cozy platform
+
+To install a static application into your cozy platform, you need to do the following steps :
+
+<br style="clear: both;" />
+
+  ```json
+  {    
+    "name": "cozy-[name of your app]", 
+    "version": "0.0.1",
+    "description": "[Description of your app : it will appear on your cozy-home platform]",
+    "cozy-type": "static", 
+    "cozy-displayName": "[The name you want displayed on your cozy-home platform]", 
+    "icon-path": "[the path of the icon you want to use for your static app ('path/to/icon.png')",
+    "author": "[Your name]"
+  }
+  ```
+<ul>
+
+<li>1. You need to create a npm package (package.json) into the root of your folder. The name in package.json should be the same as the name of the github repo. Don't forget to put “cozy” in front of name. And the most important of all is to add "cozy-type": "static" for specifying to the controller that it is a static app. If your app is not static, you don't need this line.<br/>
+If everything is going fine, cozy-controller will be able to clone the repository and install it. If the application is a dynamic app that has his own server, the controller will be able to run it for you. If the application is static, the controller just needs to install it. <br/>
+Your app could be broken if the controller did'nt manage to do one of these operations : clone it, install it or launch it. If for example your application has a package.json that has some syntax error, or your file that launches the app has'nt been found, your application will be broken. 
+</li>
+<li>
+2. Create an index.html file at the root of your folder. You can use any single page app framework you want (angularjs, reactjs, backbonejs), or just static html/css pages.
+</li>
+<li>
+3. When you're happy about your work, you can publish it on [github](https://github.com/).
+</li>
+<li>
+4. Then you can go to the home of your Cozy, and at the bottom of the application manager, just type the URL of the repository of your wrapper, click install, wait a few seconds and enjoy !
+</li>
+</ul>
+
 # Understanding the platform
 
 ## Architecture and Components
