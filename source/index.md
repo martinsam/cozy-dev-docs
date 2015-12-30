@@ -559,17 +559,16 @@ Now, we are going to update the document we've just fetched. You should expect t
 // Update an existing debt
 router.put('/debts/:id', function(req, res, next) {
     /*
-        `Debt.updateAttributes` sends a request to the Data System to update
-        the document, given its ID and the fields to update.
+        First, get the document we want to update.
     */
-    Debt.updateAttributes(req.params.id, req.body, function(err, debt) {
+    Debt.find(req.params.id, function(err, debt) {
         if(err) {
             /*
                 If an unexpected error occurs, forward it to Express error
                 middleware which will send the error properly formatted.
             */
             next(err);
-        } else if (!debt) {
+        } else if(!debt) {
             /*
                 If there was no unexpected error, but that the document has not
                 been found, send the legitimate status code. `debt` is null.
@@ -577,17 +576,33 @@ router.put('/debts/:id', function(req, res, next) {
             res.sendStatus(404);
         } else {
             /*
-                If everything went well, send the fetched debt with the correct
-                HTTP status.
+                `Debt.updateAttributes` sends a request to the Data System to
+                update the document, given its ID and the fields to update.
             */
-            res.status(200).send(debt);
+            debt.updateAttributes(req.body, function(err, debt) {
+                if(err) {
+                    /*
+                        If an unexpected error occurs, forward it to Express
+                        error middleware which will send the error properly
+                        formatted.
+                    */
+                    next(err);
+                } else {
+                    /*
+                        If everything went well, send the fetched debt with the
+                        correct HTTP status.
+                    */
+                    res.status(200).send(debt);
+                }
+            });
         }
+
     });
 });
 ```
 
 <br style="clear: both;" />
-Here we use the `Debt.updateAttributes` method in combination with `req.params.id` and `req.body`, that we introduced in the previous sections. We still pay attention to the possibility of updating an unexisting document, but the code should look very familiar now.
+Here we first retrieve the debt object from the database thanks to `req.params.id`, then we use `debt.updateAttributes` with `req.body`, that we introduced in the previous sections. We still pay attention to the possibility of updating an unexisting document, but the code should look very familiar now.
 
 #### Delete an existing debt
 There is one main element left in our CRUD, the deletion. The code is straightforward:
