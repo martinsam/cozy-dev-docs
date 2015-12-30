@@ -826,8 +826,8 @@ router.get('/debts', function(req, res, next) {
         things, like a range of keys.
     */
     var options =  {
-        startKey: ['Joseph', '2015-12-01'],
-        endKey: ['Joseph', '2015-12-31'],
+        startkey: ['Joseph', '2015-12-01'],
+        endkey: ['Joseph', '2015-12-31'],
     };
     Debt.request('byCreditor', options, function(err, debts) {
         if(err) {
