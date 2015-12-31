@@ -926,7 +926,7 @@ app.use(express.static('client'));
 // ...
 ```
 
-When a HTTP request hits the server, say `GET /images/logo.png`, Express.js will try to match the routes we've defined, if no route matched, it will try to match them based on the file tree in the folder `client/`.
+When a HTTP request hits the server, say `GET /images/logo.png`, Express.js will try to match the routes we've defined, if no route is matched, it will try to match it based on the file tree in the folder `client/`.
 
 If the file `client/images/logo.png` exists, it will be served. If it isn't, an empty response with the status code 404 will be sent.
 
