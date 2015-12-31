@@ -854,34 +854,81 @@ We can do more with CouchDB views, but that's a good start. We are able to many 
 
 ## Packaging and deployment
 
-<aside class="notice">
-Coming soon...
-<ul>
-<li>how to package the application: manifest, common pitfalls</li>
-<li>deploying the app into a Cozy instance: push to remote, install from Git.</li>
-</ul>
-</aside>
+We've built a little application that can perform basic operations on its data. How do we package in order to use it on our Cozy?
 
-## Interacting with the Data System: advanced
+The first thing to do is packaging the application, then making it available, then installing it in our Cozy.
 
-<aside class="notice">
-Coming soon...
-<ul>
-<li>detailed explaination of CouchDB view mechanism</li>
-<li>map/reduce functions declarations</li>
-<li>Useful CouchDB resources</li>
-</ul>
-</aside>
+### Packaging the application
+The application needs a manifest. A manifest is a file containing meta information about the application, namely:
+
+* its identifier
+* its display name
+* its description
+* its version
+* the permissions it needs
+
+
+Cozy extends Node.js manifest so we don't have to deal with yet another file:
+
+```json
+{
+  "name": "my-app-identifier",
+  "displayName": "My Application Name",
+  "description": "My application's punchline",
+  "version": "1.0.0",
+  "cozy-permissions": {
+    "debt": {
+      "description": "Why do my application needs to access this document type"
+    }
+  }
+}
+```
+
+The `name` field is an identifier for our app, it will be used in the URL, in this case, we will be able to access our app from: `https://my-cozy.com/#apps/my-app-identifier/`.
+
+The `displayName` field is shown when we have installed the application, in our home screen.
+
+The `description` is used when we install the application. It quickly describes what our application does. Keep it short!
+
+`version` is used by Cozy to know when the application has a new version, and therefore suggest the user to updates it.
+
+`cozy-permission` is the list of document types our application will be granted access to. We must add a description to inform the user **why** our application needs to access this document type. For now, it's purely informative, but it's the first step to make transparent what our application does, and build trust with our future users.
+
+
+### Deploying the application
+Once we've packaged our application, we must make it available for installation. To achieve this, we can create a Github repository, and push our work on it.
+
+```
+# We here consider we have a Github repository created
+git add --all .
+git commit -m "A relevant commit message"
+git push origin master
+```
+
+We're ready to install it! Write down the repository's URL. At the bottom of [http://localhost:9104/#applications](http://localhost:9104/#applications), we type the URL, and start the installation process.
+
+Once it's done, we can see our app in the applications list: [http://localhost:9104/#apps/my-app-identifier](http://localhost:9104/#apps/my-app-identifier).
 
 ## Serving assets
 
-<aside class="notice">
-Coming soon...
-<ul>
-<li>serving an HTML page with data</li>
-<li>serving static assets</li>
-</ul>
-</aside>
+We might need to serve assets, such as images, stylesheets, or scripts. Express.js allows us to handle it:
+
+```
+// ./server.js
+
+// ...
+
+/*
+    Configuration section.
+*/
+app.use(express.static('client'));
+
+// ...
+```
+
+When a HTTP request hits the server, say `GET /images/logo.png`, Express.js will try to match the routes we've defined, if no route matched, it will try to match them based on the file tree in the folder `client/`.
+
+If the file `client/images/logo.png` exists, it will be served. If it isn't, an empty response with the status code 404 will be sent.
 
 # Going further
 
@@ -957,6 +1004,17 @@ Coming soon...
 </ul>
 </aside>
 
+## Interacting with the Data System: advanced
+
+<aside class="notice">
+Coming soon...
+<ul>
+<li>detailed explaination of CouchDB view mechanism</li>
+<li>map/reduce functions declarations</li>
+<li>Useful CouchDB resources</li>
+</ul>
+</aside>
+
 ## Building a standalone Single Page Application
 We like to experiment in the Node.js ecosystem, and we're promoting single page applications as the way to buld rich experience for the web. This tutorial doesn't cover that aspect. If you want to learn more, please check our [tutorial](https://blog.cozycloud.cc/post/2015/09/29/Build-and-share-your-single-page-app-with-React%2C-Node-and-Pouchdb%2C-part-I)!
 
@@ -966,16 +1024,16 @@ We like to experiment in the Node.js ecosystem, and we're promoting single page 
 <br style="clear: both;" />
 
   ```json
-  {    
+  {
     "cozy-type": "static"
   }
   ```
-  
+
 To deploy a static application into your cozy platform, you need to do the following steps :
 
 * You need to create a NPM package manifest in package.json into the root of your folder. The most important thing of this process is to add `cozy-type`: `static` for specifying to the controller that it's a static app. If your app is not static, you don't need this line.<br/>
 If everything is going fine, cozy-controller will be able to clone the repository and install it. If the application is a dynamic app that has his own server, the controller will be able to run it for you. If the application is static, the controller just needs to install it. <br/>
-Your app could be broken if the controller didn't manage to do one of these operations : clone it, install it or launch it. If for example your application has a package.json that has some syntax error, or your file that launches the app has'nt been found, your application will be broken. 
+Your app could be broken if the controller didn't manage to do one of these operations : clone it, install it or launch it. If for example your application has a package.json that has some syntax error, or your file that launches the app has'nt been found, your application will be broken.
 * Create an index.html file at the root of your folder. You can use any single page app framework you want (angularjs, reactjs, backbonejs), or just static html/css pages.
 * When you're happy about your work, you can publish it on [github](https://github.com/).
 * Then you can go to the home of your Cozy, and at the bottom of the application manager, just type the URL of the repository of your wrapper, click install, wait a few seconds and enjoy !
