@@ -290,7 +290,7 @@ router.get('/hello-world', function(req, res, next) {
 module.exports = router;
 ```
 
-This will execute the callback when you request http://localhost:9250/hello-world with your browser. Try it now!
+This will execute the callback when you request [http://localhost:9250/hello-world](http://localhost:9250/hello-world) with your browser. Try it now!
 
 
 We can also check the official [Express.js documentation about routing](http://expressjs.com/en/guide/routing.html) if we want to learn more about it, or keep it as a reference for future use.
@@ -364,7 +364,7 @@ The Data System offers a REST API, which means one must use HTTP requests to com
 <aside class="notice">
 The Data system can do much more, we'll introduce you its features step by step.
 <br />
-If you are willing to check the full Data System's documentation, please [click here](#data-system-api).
+If you are willing to check the full Data System's documentation, please <a href="#data-system-api">click here</a>.
 </aside>
 
 ### Using cozydb to build a CRUD
@@ -430,7 +430,7 @@ module.exports = Debt;
 #### Create a new debt
 The code to create a new debt document is straightforward when we already know Express, but we'll explain a bit more so all of us can follow.
 
-Let's go to http://localhost:9250/. As you can see, a small tool to interact with our API has been prepared in order to help us understand what is going on.
+Let's go to [http://localhost:9250/](http://localhost:9250/). As you can see, a small tool to interact with our API has been prepared in order to help us understand what is going on.
 On the left, we can see the form we can fill to create a debt, on the right is the raw payload that will be sent along the request, as the request's body.
 
 Play with it and look at the result. You will see an error. Let's have a look at the controller's code in `./server/controllers/debt.js` to understand why.
@@ -734,7 +734,7 @@ router.get('/debts', function(req, res, next) {
 <br style="clear: both;" />
 The `Debt.request` function requests a specific CouchDB view. It needs the view's name, in this case `all`, that we've previously declared in `./server/models/requests.js`.
 
-Now we can check that we get all the document we've created, by going to http://localhost:9250/ and trying out the form in the list section.
+Now we can check that we get all the document we've created, by going to [http://localhost:9250/](http://localhost:9250/) and trying out the form in the list section.
 
 ##### List all the debts for a given creditor
 Listing all documents of document type is too basic for many use cases. We may want to get the list of all the debts for a given creditor.
