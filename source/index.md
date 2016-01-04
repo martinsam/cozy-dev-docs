@@ -173,7 +173,7 @@ Installing Node.js on your local environment is necessary to run your app and us
 You can find detailed instructions of installation on the [official page](https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager).
 
 <aside class="warning">
-If you already have a Node.js version installed on your computer that is not <strong>v0.10.40</strong>, you will have to consider <strong>upgrading/downgrading</strong> it, or to use a tool like <a href="https://github.com/tj/n">N</a>.
+If you already have a Node.js version installed on your computer that is not <strong>v0.10.x</strong>, you will have to consider <strong>upgrading/downgrading</strong> it, or to use a tool like <a href="https://github.com/tj/n">N</a>.
 </aside>
 
 
