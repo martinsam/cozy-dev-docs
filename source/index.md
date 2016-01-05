@@ -29,7 +29,7 @@ The **technical level required** to read and understand this documentation is no
  * Read/Write **JavaScript**, **HTML** and **CSS**
  * Install and run a **Node.js** process
  * Be comfortable with **command-line** calls
- * Know that cookie are not made of flour
+ * Know that cookies are not made of flour
 
 
 ```javascript
@@ -72,7 +72,7 @@ Cozy also became our **daily working environment**, and we want it to be as comf
   <a href="https://couchdb.apache.org" target="_blank"><img src="images/couchdb.png" style="width: 30%"></a>
 </p>
 
-**CouchDB** is surely less-known, but definetly reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love on a database engine.
+**CouchDB** is surely less-known, but definitely reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love on a database engine.
 
 
 
@@ -646,7 +646,7 @@ The principle is simple: CouchDB is a huge list of documents. To fetch a subset 
 We describe in details how map/reduce work and how we can use them, later in this tutorial. For now, we'll introduce `cozydb` helpers to help us creating basic views, which are probably what we will need in most cases. Later on this tutorial, we'll get into details about map/reduce functions to build advanced
 
 <aside class="notice">
-In Cozy's Data System will automatically wall views for a specific doctype, so we don't have to worry about getting documents from document types we don't want. It's also a security measure to prevent applications to access documents they're not granted access to.
+Cozy's Data System will automatically wall views for a specific doctype, so we don't have to worry about getting documents from document types we don't want. It's also a security measure to prevent applications to access documents they're not granted access to.
 </aside>
 
 The easiest way to introduce the view concept is getting practical. We are going to do the following:
