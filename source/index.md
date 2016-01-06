@@ -43,9 +43,9 @@ console.log(" ╰(◕‿◕)╯ ");
 
 ![Capture 1](images/capture-1.jpg)
 
-Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easying the pain of **system administration**, **web development** and **security**.
+Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easying the pain of **system administration**, **web development** and **security**. Get your data back home!
 
-### Data-oriented (WIP)
+### Data-oriented
 
 The initial idea was to create a space where developers can **experiment and play with their data**, while remaining in control of the platform. A friendly centralized point to fetch data from Things-Of-Internet, devices and personal services.
 
@@ -151,7 +151,7 @@ apt-get install nodejs nodejs-legacy
  > On other GNU/Linux systems, you can install Node.js manually by doing
 
 ```shell
-wget -q -O - http://nodejs.org/dist/v0.10.40/node-v0.10.40.tar.gz | tar xz
+wget -q -O - https://nodejs.org/download/release/v0.10.40/node-v0.10.40.tar.gz | tar xz
 cd node-v0.10.40
 ./configure
 make
@@ -161,14 +161,14 @@ npm install -g npm
 ```
 
  > On Mac OS X, simply download the package, and install it <br>
- > <a href="https://nodejs.org/dist/v0.10.40/node-v0.10.40.pkg">https://nodejs.org/dist/v0.10.40/node-v0.10.40.pkg</a>
+ > <a href="https://nodejs.org/download/release/v0.10.40/node-v0.10.40.pkg">https://nodejs.org/download/release/v0.10.40/node-v0.10.40.pkg</a>
 
 ```shell
 # To check the Node.js version
 node --version
 ```
 
-Installing Node.js on your local environment is necessary to run your app and use `cozy-dev`. Cozy runs well on <strong>Node.js v0.10.40</strong>, and you will have to install this version.
+Installing Node.js on your local environment is necessary to run your app and use `cozy-dev`. Cozy runs well on <strong>Node.js v0.10.40</strong>, and you should install this version.
 
 You can find detailed instructions of installation on the [official page](https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager).
 
@@ -237,7 +237,7 @@ Before writing code, let's have an overview of the Cozy Cloud architecture. The 
 * the data system is a wrapper for CouchDB, which handles authorization and permission of applications when they access data.
 * the pPaaS is what install, updated, uninstall, start and stop applications in the platform. You don't have to tink about deployment!
 
-The Cozy Cloud architecture is detailed in a [specific part]().
+The Cozy Cloud architecture is detailed in a <a href="#architecture-and-components">specific part</a>.
 
 
 Let's write our first Node.js application for Cozy. We'll learn step by step how to organize our code, interact with the database, and package the application to deploy it into a Cozy instance.
@@ -245,7 +245,7 @@ Let's write our first Node.js application for Cozy. We'll learn step by step how
 
 ## Hello World! Architecture of a Node.js Cozy application.
 In order to facilitate our discovery, we're going to use a premade template that we will improve step by step with features offered by Cozy.
-We are going to write a REST API using Express.js and module to interact with Cozy data system seamlessly, cozydb.
+We are going to write a REST API using Express.js, an HTTP server for Node.js, and a module to interact with Cozy's data system seamlessly, cozydb.
 
 It would be no fun to do without a purpose, so we'll use the context of an application that keep track of debts we owe friends.
 
@@ -298,7 +298,7 @@ We can also check the official [Express.js documentation about routing](http://e
 We've prepared an empty controller (`./server/controllers/debt.js/`), but we'll deal with it in the next part.
 
 ### The entry point: server.js
-You may wonder how to glue everything together. All that magic is done in `server.js`. The code itself is straightforward, and we shall have to change it in the future.
+You may wonder how to glue everything together. All that magic is done in `server.js`. The code itself is straightforward, and we shall change it in the future.
 
 ```javascript
 // ./server.js
@@ -332,6 +332,9 @@ var server = app.listen(9250, function () {
   console.log('Cozy tutorial app listening at http://%s:%s', host, port);
 });
 ```
+
+### The models
+Located in `./server/models`, models are used to interact with the database. They represent the data our application needs. We will introduce them, and then extensively use them in the next section; so we won't say more about it yet.
 
 
 ### Other elements
@@ -893,6 +896,7 @@ The `description` is used when we install the application. It quickly describes 
 `version` is used by Cozy to know when the application has a new version, and therefore suggest the user to updates it.
 
 `cozy-permission` is the list of document types our application will be granted access to. We must add a description to inform the user **why** our application needs to access this document type. For now, it's purely informative, but it's the first step to make transparent what our application does, and build trust with our future users.
+Authentication and authorization is managed by the Data System, and cozydb automatically adds the information need to authenticate itself.
 
 
 ### Deploying the application
