@@ -1051,6 +1051,9 @@ We haven't moved all the resources to the new documentation website. For the tim
 
 
 # References
+
+You can find the old documentation [here](https://docs.cozy.io/en/hack/cookbooks/).
+
 ## Data System API
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/data-system.html).
 
