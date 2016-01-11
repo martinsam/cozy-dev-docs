@@ -8,3 +8,21 @@ body .content pre, body .content blockquote {
   padding-top: 1em;
   padding-bottom: 1em;
 }
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.tocify-logo {
+    padding: $nav-padding;
+    border-bottom: 1px solid $nav-border-bg;
+
+    img {
+        max-height: 36px;
+    }
+}

@@ -21,30 +21,46 @@ under the License.
 // Use these settings to help adjust the appearance of Slate
 
 
+// COLORS
+////////////////////
+$primary-color: #33a6ff;
+$lighter-color: #F1F3F5;
+$light-color: #DDE6EF;
+$medium-color: #93A0B1;
+$mediumer-color: #8491A4;
+$dark-color: #32363F;
+$darker-color: #1D1F23;
+
+
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #393939;
-$examples-bg: #393939;
-$code-bg: #292929;
-$code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
-$nav-active-bg: #2467af;
+$nav-bg: $lighter-color;
+$examples-bg: $dark-color;
+$code-bg: #26292F;
+$code-annotation-bg: #1D1F23;
+$nav-subitem-bg: $lighter-color;
+$nav-border-bg: $light-color;
+$nav-active-bg: $light-color;
 $lang-select-border: #000;
-$lang-select-bg: #222;
+$lang-select-bg: #22242A;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #eaf2f6;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
-$aside-success-bg: #6ac174;
+$main-bg: #fff;
+$h1-bg: #f5f5f5;
+$aside-notice-bg: $lighter-color;
+$aside-warning-bg: #FF3713;
+$aside-success-bg: #35D66A;
 $search-notice-bg: #c97a7e;
 
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #fff;
-$nav-active-text: #fff;
+$main-text: $dark-color; // main content text color
+$heading-text: $darker-color;
+$aside-text: #fff;
+$nav-text: $dark-color;
+$nav-sub-text: $dark-color;
+$nav-active-text: $primary-color;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
@@ -69,7 +85,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 ////////////////////
 %default-font {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 %header-font {
@@ -79,7 +95,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -90,8 +106,9 @@ $nav-active-shadow: #000;
 $nav-footer-border-color: #666;
 $nav-embossed-border-top: #000;
 $nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$main-embossed-text-shadow: 0;
+$search-box-border-color: rgba(0,0,0,.19);
+$search-box-border-focus-color: $primary-color;
 
 
 ////////////////////////////////////////////////////////////////////////////////
