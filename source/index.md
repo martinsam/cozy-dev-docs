@@ -1012,13 +1012,18 @@ We like to experiment in the Node.js ecosystem, and we're promoting single page 
 
 <br style="clear: both;" />
 
-  ```json
-  {
-    "cozy-type": "static"
-  }
-  ```
+```json
+{
+  "name": "your-app-name",
+  "cozy-type": "static",
+  "displayName": "Your App's Name",
+  "version": "1.0.0",
+  "description": "Your app's description",
+  "main": "index.html"
+}
+```
 
-To deploy a static application into your cozy platform, you need to do the following steps :
+To deploy a static application into your cozy platform, you need to do the following steps:
 
 * You need to create a NPM package manifest in package.json into the root of your folder. The most important thing of this process is to add `cozy-type`: `static` for specifying to the controller that it's a static app. If your app is not static, you don't need this line.<br/>
 If everything is going fine, cozy-controller will be able to clone the repository and install it. If the application is a dynamic app that has his own server, the controller will be able to run it for you. If the application is static, the controller just needs to install it. <br/>
