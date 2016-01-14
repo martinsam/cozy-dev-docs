@@ -125,41 +125,30 @@ git --version
 The first step is obviously to install the development dependencies. Git is the [SCM](https://en.wikipedia.org/wiki/Version_control) we use at Cozy, and if you don't know how to use it yet, don't worry: we will give example commands in the following tutorial.
 
 
-### 2. Install Node.js 0.10.x
+### 2. Install Node.js
 
  > On Debian GNU/Linux Jessie, the proper version of Node.js is available in the official repositories
 
 ```shell
-apt-get install nodejs nodejs-legacy
+apt-get install nodejs nodejs-legacy npm
 ```
 
- > On other GNU/Linux systems, you can install Node.js manually by doing
-
-```shell
-wget -q -O - https://nodejs.org/download/release/v0.10.40/node-v0.10.40.tar.gz | tar xz
-cd node-v0.10.40
-./configure
-make
-make install
-cd .. && rm -r node-v0.10.40
-npm install -g npm
-```
+ > On other GNU/Linux systems, you can install Node.js manually by following
+ > instructions from https://nodejs.org/en/download/package-manager/
 
  > On Mac OS X, simply download the package, and install it <br>
- > <a href="https://nodejs.org/download/release/v0.10.40/node-v0.10.40.pkg">https://nodejs.org/download/release/v0.10.40/node-v0.10.40.pkg</a>
+ > <a href="https://nodejs.org/dist/v4.2.4/node-v4.2.4.pkg">https://nodejs.org/dist/v4.2.4/node-v4.2.4.pkg</a>
 
 ```shell
 # To check the Node.js version
 node --version
 ```
 
-Installing Node.js on your local environment is necessary to run your app and use `cozy-dev`. Cozy runs well on <strong>Node.js v0.10.40</strong>, and you should install this version.
+Installing Node.js on your local environment is necessary to run your app and
+use `cozy-dev`. Cozy runs well on <strong>Node.js v0.10</strong> and
+<strong>Node.js 4.2</strong>, and you should install one of those versions.
 
-You can find detailed instructions of installation on the [official page](https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager).
-
-<aside class="warning">
-If you already have a Node.js version installed on your computer that is not <strong>v0.10.x</strong>, you will have to consider <strong>upgrading/downgrading</strong> it, or to use a tool like <a href="https://github.com/tj/n">N</a>.
-</aside>
+You can find detailed instructions of installation on the [official page](https://nodejs.org/en/download/).
 
 
 ### 3. Install VirtualBox and Vagrant
