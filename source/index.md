@@ -356,7 +356,7 @@ If you are willing to check the full Data System's documentation, please <a href
 </aside>
 
 ### Using cozydb to build a CRUD
-In this section, we will learn how to define a new document type in our application, and build a CRUD, a set of basic operations: Create, Read, Update, Delete) for it.
+In this section, we will learn how to define a new document type in our application, and build a CRUD (a set of basic operations: Create, Read, Update, Delete) for it.
 
 In order to try our results, we'll to wrap this CRUD with an HTTP API in our Hello World application. This API is already defined in `./server/controllers/debts`, but it's an empty shell that we'll fill.
 
