@@ -137,7 +137,7 @@ apt-get install nodejs nodejs-legacy npm
  > instructions from https://nodejs.org/en/download/package-manager/
 
  > On Mac OS X, simply download the package, and install it <br>
- > <a href="https://nodejs.org/dist/v4.2.4/node-v4.2.4.pkg">https://nodejs.org/dist/v4.2.4/node-v4.2.4.pkg</a>
+ > <a href="https://nodejs.org/dist/v4.3.0/node-v4.3.0.pkg">https://nodejs.org/dist/v4.3.0/node-v4.3.0.pkg</a>
 
 ```shell
 # To check the Node.js version
@@ -146,7 +146,7 @@ node --version
 
 Installing Node.js on your local environment is necessary to run your app and
 use `cozy-dev`. Cozy runs well on <strong>Node.js v0.10</strong> and
-<strong>Node.js 4.2</strong>, and you should install one of those versions.
+<strong>Node.js 4.3</strong>, and you should install one of those versions.
 
 You can find detailed instructions of installation on the [official page](https://nodejs.org/en/download/).
 
