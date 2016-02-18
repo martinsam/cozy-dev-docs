@@ -30,7 +30,7 @@ Now, let's get serious and straight to the point: our goal is to build a client-
 To do so, we'll proceed in different steps. We'll start slowly by deploying a client-side "Hello World" app, and we'll finish with a full contact app using vanillaJS. This tutorial is for everybody, from padawan to jedi, so don't be scared of it. We'll explain everything.
 
 
-# Make a static "Hello World Application"
+# Make a client-side "Hello World Application"
 
 ## First step : Hello World !
 
