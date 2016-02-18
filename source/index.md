@@ -215,15 +215,15 @@ The Cozy Cloud architecture is detailed in a <a href="#architecture-and-componen
 
 # Write your own application
 
-From this point onward, you have a choice to make :
+From this point onward, you have a choice to make:
 
-## client-side application
+## Client-side application
 
-If you want to make a simple app that only manipulate data inside the cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>
+If you want to make a simple app that only manipulate data inside the cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>.
 
 ## Node.js application
 
-If you want to make a powerfull app using node.js, which manipulate files, access remote APIs or allow access a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>
+If you want to make a powerfull app using node.js, which manipulate files, access remote APIs or allow access a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>.
 
 # Understanding the platform
 

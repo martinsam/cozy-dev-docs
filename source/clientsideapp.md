@@ -82,7 +82,7 @@ At the end of this step, your app should be similar to [this](https://github.com
 
 From this point, you will want to add some javascript and start working with the user data. You can get started easily using only some DOM manipulation, but if you want to make a more complicated app, you are going to need a Frame work.
 
-If you dont have a framework preference, we recommend you get started using the [Vanilla JS](#option-1-vanilla-js) section and [Sample app](https://github.com/lemelon/cozysdk-client-tuto/tree/vanillajs). The term vanilla JS is a joke about using "pure" javascript without any library. It's better to start this way and then pick the framework which best scratch your itches.
+If you don't have a framework preference, we recommend you get started using the [Vanilla JS](#option-1-vanilla-js) section and [Sample app](https://github.com/lemelon/cozysdk-client-tuto/tree/vanillajs). The term vanilla JS is a joke about using "pure" javascript without any library. It's better to start this way and then pick the framework which best scratch your itches.
 
 If your framework of choice is Angular.js, you just got lucky as we have a [section](#option-2-angular) and [Sample app](https://github.com/lemelon/cozysdk-client-tuto/tree/angularjs) for it. If you prefer another framework, you will find the information you need in the Vanilla section, but let us know and we might include it here !
 
@@ -210,7 +210,7 @@ In both case we callback is called when the action is finished and we can update
 
 ## Going further
 
-I think my role is complete. You now have the technical tool to develop "clientside" apps on Cozy. If you want to use a framework, you can experiment with using it and the cozysdk and let us know how it goes.
+I think my role is complete. You now have the technical tool to develop client-side apps on Cozy. If you want to use a framework, you can experiment with using it and the cozysdk and let us know how it goes.
 
 The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronise data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
 
@@ -275,7 +275,7 @@ You can find the source code for this step [here](https://github.com/lemelon/coz
 
 ### So what happened?
 
-This is exactly where the magic is: two apps that have nothing to do with each other, developed by two different people that might not even know eachother, can work together and be synchronized, or, even better, rationalized. In other words, this demo proves the fact that the apps can talk to eachother. So to think a bit further, the apps can share their data to be able to give transverse services. So because our applications work in the same data space, the apps start to collaborate to deliver a more integrated user experience. They are, in a certain way, smart.
+This is exactly where the magic is: two apps that have nothing to do with each other, developed by two different people that might not even know each other, can work together and be synchronized, or, even better, rationalized. In other words, this demo proves the fact that the apps can talk to each other. So to think a bit further, the apps can share their data to be able to give transverse services. So because our applications work in the same data space, the apps start to collaborate to deliver a more integrated user experience. They are, in a certain way, smart.
 
 ## Fourth step : Create, destroy or update a contact
 
@@ -297,6 +297,6 @@ So I've added four functions to the controller file : send, update, destroy, and
 
 ### Going further
 
-I think my role is complete. You now have the technical tool to develop "clientside" apps with angularjs on Cozy. You can also acquire more skills on angularjs by googling it and seeing the enormous amount of tutorials on it. The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronise data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
+I think my role is complete. You now have the technical tool to develop client-side apps with angularjs on Cozy. You can also acquire more skills on angularjs by googling it and seeing the enormous amount of tutorials on it. The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronise data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
 
 When your application is going to be able to change the life of all the Cozy users, you can add it on [cozy-registry](https://github.com/cozy/cozy-registry) by making a pull request.
