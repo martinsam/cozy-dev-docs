@@ -5,11 +5,11 @@ language_tabs:
   - javascript: JavaScript
 
 toc_headers:
-  - <a href="/">Introduction</a>
+  - <a href="/">Back to Homepage</a>
 
 toc_footers:
   - <a href="https://cozy.io" target="_blank">Cozy Website</a>
-  - <a href="https://github.com/cozy-labs/cozy-dev-docs/tree/master/source/index.md" target="_blank">Edit this Documentation</a>
+  - <a href="https://github.com/cozy-labs/cozy-dev-docs/blob/master/source/clientsideapp.md" target="_blank">Edit this Documentation</a>
   - <a href="http://github.com/tripit/slate" target="_blank">Documentation Powered by Slate</a>
 
 search: true
