@@ -34,7 +34,7 @@ To do so, we'll proceed in different steps. We'll start slowly by deploying a cl
 
 ## First step : Hello World !
 
-Here we are, doing the traditionnal "Hello World" app that can make you want to start a new career.
+Here we are, doing the traditional "Hello World" app that can make you want to start a new career.
 
 ```json
 {
@@ -43,26 +43,33 @@ Here we are, doing the traditionnal "Hello World" app that can make you want to 
   "displayName": "Your App's Name",
   "version": "1.0.0",
   "description": "Your app's description",
-  "main": "index.html"
+  "icon-path": "main_icon.png",
+  "author": "Your name",
 }
 ```
 
 Start by creating a folder `your app` and run a `git init` in it. Then you will need a few files : First, the manifest `package.json` as shown on the right. The fields you need are :
 
   - `name`, the name of your app (without space)
+  - `cozy-type: "static"`, which tells Cozy your app doesn't need a server
   - `displayName`, the user readable name
+  - `version`, to manage application's updates
   - `description`, what the user will see when installing your app
-  - `cozy-type: "static"`, which tells Cozy your app doesnt need a server
   - `icon-path`, a path to your app icon
+  - `author`, your full name or nickname
 
 
 ```html
-<html>
-<title>Your app !</title>
-</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Your app !</title>
+</head>
 <body>
   <p>Hello World !<p>
 </body>
+</html>
 ```
 Also, an `index.html` file needs to be at the root of your repository with your 'Hello World' written in it.
 
@@ -70,9 +77,9 @@ Once you have these, publish your app on [github](https://github.com/) and you s
 
 ![Install field](images/install_field.png)
 
-Your app could be broken if the controller didn’t manage to do one of the following operations: clone it, install it or launch it. If your application has a `package.json` that has some syntax error for example, or your file that launches the app has'nt been found, your application will not work.
+Your app could be broken if the controller didn’t manage to do one of the following operations: clone it, install it or launch it. If your application has a `package.json` that has some syntax error for example, or your file that launches the app hasn't been found, your application will not work.
 
-If not, don't worry, we're here to help you: the most easy way to contact us is by joining our [irc channel](http://irc.lc/freenode/cozycloud).
+If not, don't worry, we're here to help you: the most easy way to contact us is by joining our [irc channel](http://irc.lc/freenode/cozycloud) (#cozycloud on Freenode server).
 
 ## Source code
 
@@ -229,7 +236,7 @@ AngularJS is a Single Page Application (SPA) framework. If you don't have an ide
 
 AngularJS enables the user to easily create dynamic views. It's a very used SPA, so that's why it could be a beneficial learning tool.
 
-To get started with angular, we will need to include the angularJS library in our app and declare an entry to our application, by calling `ng-app="[the name of your app]"`. We'll also need to have a main module and setup the relation between the view (home.html) and the controller (Home.Ctrl.js). If you want some styleguides for proper angular structure and coding, we recommend the [Johnpapa's angular styleguide](https://github.com/johnpapa/angular-styleguide)
+To get started with angular, we will need to include the angularJS library in our app and declare an entry to our application, by calling `ng-app="[the name of your app]"`. We'll also need to have a main module and setup the relation between the view (home.html) and the controller (Home.Ctrl.js). If you want some style-guides for proper angular structure and coding, we recommend the [Johnpapa's angular styleguide](https://github.com/johnpapa/angular-styleguide)
 
 ### The skeleton
 
@@ -297,6 +304,6 @@ So I've added four functions to the controller file : send, update, destroy, and
 
 ### Going further
 
-I think my role is complete. You now have the technical tool to develop client-side apps with angularjs on Cozy. You can also acquire more skills on angularjs by googling it and seeing the enormous amount of tutorials on it. The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronise data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
+I think my role is complete. You now have the technical tool to develop client-side apps with angularjs on Cozy. You can also acquire more skills on angularjs by googling it and seeing the enormous amount of tutorials on it. The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronize data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
 
 When your application is going to be able to change the life of all the Cozy users, you can add it on [cozy-registry](https://github.com/cozy/cozy-registry) by making a pull request.
