@@ -44,7 +44,6 @@ Here we are, doing the traditional "Hello World" app that can make you want to s
   "version": "1.0.0",
   "description": "Your app's description",
   "icon-path": "main_icon.png",
-  "author": "Your name",
 }
 ```
 
@@ -56,7 +55,6 @@ Start by creating a folder `your app` and run a `git init` in it. Then you will 
   - `version`, to manage application's updates
   - `description`, what the user will see when installing your app
   - `icon-path`, a path to your app icon
-  - `author`, your full name or nickname
 
 
 ```html
