@@ -43,7 +43,7 @@ Here we are, doing the traditional "Hello World" app that can make you want to s
   "displayName": "Your App's Name",
   "version": "1.0.0",
   "description": "Your app's description",
-  "icon-path": "main_icon.png",
+  "icon-path": "main_icon.png"
 }
 ```
 
