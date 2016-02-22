@@ -81,7 +81,7 @@ If not, don't worry, we're here to help you: the most easy way to contact us is 
 
 ## Source code
 
-At the end of this step, your app should be similar to [this](https://github.com/cozy/cozysdk-client-tuto/tree/v1.0).
+At the end of this step, your app should be similar to [this](https://github.com/cozy/cozysdk-client-tuto/tree/step1-angular).
 
 ## Framework decision time
 
@@ -97,7 +97,7 @@ If your framework of choice is Angular.js, you just got lucky as we have a [sect
 
 ## Source code
 
-To see the fully working and finished version, you can go on this [github](https://github.com/cozy/cozysdk-client-tuto/commit/7b4c33ce8d1281edeb5a8017191a403ee820fde4) repo.
+To see the fully working and finished version, you can go on this [github](https://github.com/cozy/cozysdk-client-tuto/tree/vanillajs) repo.
 
 ## Second step: Get contacts
 
@@ -247,7 +247,7 @@ If you understand the skeleton and the main logic of this code, you basically un
 
 ### Source code
 
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/v2.0)!
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step2-angular)!
 
 ## Third step: Get data from contacts app
 
@@ -276,7 +276,7 @@ We can also put a filter to show how simple it is to do it in angularjs, just fo
 
 ### Source code
 
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/v3.0)!
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step3-angular)!
 
 ### So what happened?
 
@@ -294,7 +294,7 @@ The functions that we'll need are `send`, `update`, and `destroy`. These functio
 
 #### Source code
 
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/v4.0)!
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step4-angular)!
 
 #### What to keep in mind?
 
