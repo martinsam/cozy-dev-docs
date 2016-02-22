@@ -264,7 +264,7 @@ For this step, we'll have to get the list of all the names of the contact app. F
 You'll also need to import two files into your project:
 
 - [cozysdk-client.js](https://github.com/cozy/cozysdk-client/blob/master/dist/cozysdk-client.js): this is a javascript Cozy library that enables to do clean request to the data-system. You can access this [tutorial](https://github.com/cozy/cozysdk-client/blob/master/api.md) to learn how to use it.
-- [cozysdk.angular.js](https://github.com/lemelon/cozysdk-client-tuto/blob/master/interfaces/cozysdk.angular.js): this is the Cozy file that enables you to connect the logic of the cozysdk-client library with angularjs. It helps developers to work with organized code in angularjs.
+- [cozysdk.angular.js](https://github.com/cozy/cozysdk-client-tuto/blob/v4.0/interfaces/cozysdk.angular.js): this is the Cozy file that enables you to connect the logic of the cozysdk-client library with angularjs. It helps developers to work with organized code in angularjs.
 
 Both these files are optional, you could use `postMessage` to retrieve your app token and then do manual `XMLHttpRequest` calls against the [data-system api](https://docs.cozy.io/en/hack/cookbooks/data-system.html), but as the saying goes: ["do not reinvent the wheel"](https://en.wikipedia.org/wiki/Reinventing_the_wheel). So why do complicated when you can do simple?
 
