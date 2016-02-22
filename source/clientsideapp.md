@@ -17,13 +17,13 @@ search: true
 
 # Prerequisite
 
-This part suppose you have installed the cozy development environment from the [cozy development introduction](/).
+This part supposes you have installed the cozy development environment from the [cozy development introduction](/).
 
 # Create a client-side application for Cozy
 
 As a developer, do you believe it’s hard to play with data from differing applications? Well I'm here to try to prove you can and even more: you'll be able to code an application without a server, and this application will be able to use data from all the apps on your Cozy.
 
-**Let's write a new contact application for Cozy !**
+**Let's write a new contact application for Cozy!**
 
 Now, let's get serious and straight to the point: our goal is to build a client-side app which lists all contact names from the `Contact` app. It will also allow users to create, update, and delete contact names.
 
@@ -32,7 +32,7 @@ To do so, we'll proceed in different steps. We'll start slowly by deploying a cl
 
 # Make a client-side "Hello World Application"
 
-## First step : Hello World !
+## First step : Hello World!
 
 Here we are, doing the traditional "Hello World" app that can make you want to start a new career.
 
@@ -47,7 +47,7 @@ Here we are, doing the traditional "Hello World" app that can make you want to s
 }
 ```
 
-Start by creating a folder `your app` and run a `git init` in it. Then you will need a few files : First, the manifest `package.json` as shown on the right. The fields you need are :
+Start by creating a folder `your app` and run a `git init` in it. Then you will need a few files : First, the manifest `package.json` as shown on the right. The fields you need are:
 
   - `name`, the name of your app (without space)
   - `cozy-type: "static"`, which tells Cozy your app doesn't need a server
@@ -85,11 +85,11 @@ At the end of this step, your app should be similar to [this](https://github.com
 
 ## Framework decision time
 
-From this point, you will want to add some javascript and start working with the user data. You can get started easily using only some DOM manipulation, but if you want to make a more complicated app, you are going to need a Frame work.
+From this point, you will want to add some javascript and start working with the user data. You can get started easily using only some DOM manipulation, but if you want to make a more complicated app, you are going to need a framework.
 
-If you don't have a framework preference, we recommend you get started using the [Vanilla JS](#option-1-vanilla-js) section and [Sample app](https://github.com/lemelon/cozysdk-client-tuto/tree/vanillajs). The term vanilla JS is a joke about using "pure" javascript without any library. It's better to start this way and then pick the framework which best scratch your itches.
+If you don't have a framework preference, we recommend you get started using the [Vanilla JS](#option-1-vanilla-js) section and [Sample app](https://github.com/cozy/cozysdk-client-tuto/tree/vanillajs). The term vanilla JS is a joke about using "pure" javascript without any library. It's better to start this way and then pick the framework which best scratch your itches.
 
-If your framework of choice is Angular.js, you just got lucky as we have a [section](#option-2-angular) and [Sample app](https://github.com/lemelon/cozysdk-client-tuto/tree/angularjs) for it. If you prefer another framework, you will find the information you need in the Vanilla section, but let us know and we might include it here !
+If your framework of choice is Angular.js, you just got lucky as we have a [section](#option-2-angular) and [Sample app](https://github.com/cozy/cozysdk-client-tuto/tree/angular) for it. If you prefer another framework, you will find the information you need in the Vanilla section, but let us know and we might include it here !
 
 
 # Option 1 - Vanilla JS
@@ -97,7 +97,7 @@ If your framework of choice is Angular.js, you just got lucky as we have a [sect
 
 ## Source code
 
-To see the fully working and finished version, you can go on this [github]() repo.
+To see the fully working and finished version, you can go on this [github](https://github.com/cozy/cozysdk-client-tuto/commit/7b4c33ce8d1281edeb5a8017191a403ee820fde4) repo.
 
 ## Second step: Get contacts
 
@@ -115,9 +115,9 @@ function updateContactList(){
 document.addEventListener("DOMContentLoaded", updateContactList);
 ```
 
-Then we want to start doing things once our app, is loaded, nothing easier, we can add an [event listner](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener) to the browser event `DOMContentLoaded`.
+Then we want to start doing things. Once our app is loaded, nothing easier: we can add an [event listener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener) to the browser event `DOMContentLoaded`.
 
-We can now start doing some coding in out function `updateContactList`. Our objectives here are simple: getting the list of contacts from your `contact` app, only with javascript. The goal is to show you how simple it is to send requests to cozy-data-system, without worrying about which framework to chose.
+We can now start coding in our function `updateContactList`. Our objectives here are simple: getting the list of contacts from your `contact` app, only with javascript. The goal is to show you how simple it is to send requests to cozy-data-system, without worrying about which framework to chose.
 
 ```javascript
 function updateContactList(){
@@ -151,7 +151,7 @@ function render(contacts){
 }
 ```
 
-For simplicity, we re-render the whole array every time it changes. So we create a string of HTML with rows and cells and use [innerHTML](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML) to display it in our application.
+For simplicity, we re-render the whole array every time it changes. So we create a string of HTML with rows and cells, and use [innerHTML](https://developer.mozilla.org/fr/docs/Web/API/Element/innertHTML) to display it in our application.
 
 <aside class="notice">
 This example works better if you do have some contacts in your Cozy database. If you haven't done so already, install the Cozy Contacts application from the store on your Cozy and enter some contacts. You can import some contacts from google or insert new contacts manually.
@@ -159,7 +159,7 @@ This example works better if you do have some contacts in your Cozy database. If
 
 ### Source code
 
-You can find the source code for this step [here](https://github.com/lemelon/cozysdk-client-tuto/tree/step1-vanilla).
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step1-vanilla).
 
 ## Third step: Create, destroy or update a contact
 
@@ -176,8 +176,8 @@ So, displaying the contacts from the cozy is cool, but can our app change them ?
 document.querySelector('.send').addEventListener('change', onSendChanged);
 ```
 
-So we add a field to our html page and an event handler, when the user
-write something in the field, the function `onSendChanged` is called and we are going to create a contact with this name.
+So we add a field to our html page and an event handler. when the user
+writes something in the field, the function `onSendChanged` is called and we are able to create a contact with its name.
 
 ```javascript
 function onSendChanged(){
@@ -192,9 +192,9 @@ function onSendChanged(){
 }
 ```
 
-For that, we are getting the value from the field and passing it to the cozy SDK's `create` function, along with the type of document we want to create.
+In order to do that, we are going to get the value from the field and we'll pass it to the cozy SDK's `create` function, along with the type of document we want to create.
 
-When the contact has been created, the callback function is called and we can get the contact id. At this point, we could try to be smart and inject a row into the table, or we could go the easy way and just update the whole list again.
+When the contact has been created, the callback is called and we can get the contact id. At this point, we could try to be smart and inject a row into the table, or we could go the easy way and just update the whole list again.
 
 ### Contact update & delete
 
@@ -202,16 +202,16 @@ First things first, let's add some columns and controls to our render function. 
 
 To capture the user interaction with these buttons, we are going to use something called event bubling. It means we can add event listeners to the whole table and check the event to see if they match our criteria. This is done in the [attachEventHandler](https://github.com/cozy/cozysdk-client-tuto/blob/4ce72ad6d387347914e20bd72212b32ba70ed1bf/app.js#L59-L66) function.
 
-So now, when the user change the value of our name fields, the `onUpdatePressed` function is called. However we still need to retrieve the id of the contact.
+So now, when the user changes the value of our name fields, the `onUpdatePressed` function is called. However we still need to retrieve the id of the contact.
 For this, we use the [getIDFromElement](https://github.com/cozy/cozysdk-client-tuto/blob/4ce72ad6d387347914e20bd72212b32ba70ed1bf/app.js#L68-L73), the way to do it is a recursive function: the function will not stop going back to itself until it finds a tag with  `data-id`.
 
 So we first check the `<input>`, no `data-id`, we go up, the `<td>`, still nope, then the `<tr data-id="id of the modified contact">` and we got it !
 
-For update, we pass the id and the change we want to make to the [cozysdk.updateAttributes](https://github.com/cozy/cozysdk-client/blob/master/api.md#updateattributesdoctype-id-attributes-callback).
+For update, we pass the id and the changes we want to make to the [cozysdk.updateAttributes](https://github.com/cozy/cozysdk-client/blob/master/api.md#updateattributesdoctype-id-attributes-callback).
 
 For delete, we pass the id to [cozysdk.destroy](https://github.com/cozy/cozysdk-client/blob/master/api.md#updateattributesdoctype-id-attributes-callback)
 
-In both case we callback is called when the action is finished and we can update the list again !
+In both case the callback is called when the action is finished and we can update the list again !
 
 ## Going further
 
@@ -247,7 +247,7 @@ If you understand the skeleton and the main logic of this code, you basically un
 
 ### Source code
 
-You can find the source code for this step [here](https://github.com/lemelon/cozysdk-client-tuto/tree/v2.0)!
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/v2.0)!
 
 ## Third step: Get data from contacts app
 
@@ -276,7 +276,7 @@ We can also put a filter to show how simple it is to do it in angularjs, just fo
 
 ### Source code
 
-You can find the source code for this step [here](https://github.com/lemelon/cozysdk-client-tuto/tree/v3.0)!
+You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/v3.0)!
 
 ### So what happened?
 
